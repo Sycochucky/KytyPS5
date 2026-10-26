@@ -599,8 +599,10 @@ Graphics::ImageInfo BufferAttributeGroup::ImageInfo(const VideoOutBuffer& buffer
 		}
 		info.metadata.range       = {buffer.metadata_address, dcc_size.size};
 		info.metadata.kind        = Graphics::ImageMetadataKind::Dcc;
-		info.metadata.control     = attribute.dcc_control;
-		info.metadata.compression = compression;
+		info.metadata.control              = attribute.dcc_control;
+		info.metadata.clear_word           = attribute.dcc_cb_register_clear_color;
+		info.metadata.clear_register_valid = true;
+		info.metadata.compression          = compression;
 	}
 	Graphics::ImageOps::Validate(info);
 	if (!Graphics::IsSupportedVideoOutFormat(info)) {

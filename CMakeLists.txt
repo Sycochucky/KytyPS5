@@ -394,6 +394,13 @@ function(configure_macos_guest_address_space target)
 	endif()
 endfunction()
 
+add_executable(video_out_compression_tests EXCLUDE_FROM_ALL
+	"${KYTY_TESTS_DIR}/VideoOutCompressionTests.cpp"
+)
+target_link_libraries(video_out_compression_tests common Vulkan::Headers)
+target_include_directories(video_out_compression_tests PRIVATE ${inc_headers})
+add_test(NAME video_out_compression COMMAND video_out_compression_tests)
+
 add_kyty_full_emulator_test(shader_cfg_tests "${KYTY_TESTS_DIR}/shaderCfgTests.cpp")
 
 add_executable(scalar_provenance_tests EXCLUDE_FROM_ALL
